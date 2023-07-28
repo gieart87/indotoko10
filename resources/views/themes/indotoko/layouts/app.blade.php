@@ -7,12 +7,22 @@
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <title>IndoToko: Official Site</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/themes/indotoko/main.css'])
+    @vite([
+        'resources/sass/app.scss',
+        'resources/js/app.js',
+
+        'resources/views/themes/indotoko/assets/css/main.css',
+        'resources/views/themes/indotoko/assets/plugins/jqueryui/jquery-ui.css',
+
+        'resources/views/themes/indotoko/assets/js/main.js',
+        'resources/views/themes/indotoko/assets/plugins/jqueryui/jquery-ui.min.js',
+    ])
 </head>
 <body>
     @include('themes.indotoko.shared.header')
-    @include('themes.indotoko.shared.slider')
     @yield('content')
     @include('themes.indotoko.shared.footer')
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 </body>
 </html>
