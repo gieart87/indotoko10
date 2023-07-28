@@ -11,6 +11,11 @@
 |
 */
 
+use Modules\Shop\Http\Controllers\ProductController;
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+
 Route::prefix('shop')->group(function() {
     Route::get('/', 'ShopController@index');
 });
