@@ -6,14 +6,30 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
+
 class ProductController extends Controller
 {
+    protected $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        parent::__construct();
+
+        $this->productRepository = $productRepository;
+    }
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function index()
     {
+        $options = [
+            'per_page' => $this->perPage,
+        ];
+        
+        $this->data['products'] = $this->productRepository->findAll($options);
+        
         return $this->loadTheme('products.index', $this->data);
     }
 
