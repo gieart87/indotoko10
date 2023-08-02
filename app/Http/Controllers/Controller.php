@@ -11,7 +11,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 
     protected $data = [];
-    protected $perPage = 10;
+    protected $perPage = 8;
 
     public function __construct()
     {
