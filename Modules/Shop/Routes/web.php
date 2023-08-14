@@ -11,9 +11,12 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 use Modules\Shop\Http\Controllers\ProductController;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/category/{categorySlug}', [ProductController::class, 'category'])->name('products.category');
+Route::get('/{categorySlug}/{productSlug}', [ProductController::class, 'show'])->name('products.show');
 
 
 Route::prefix('shop')->group(function() {
