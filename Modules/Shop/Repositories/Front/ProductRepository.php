@@ -4,6 +4,7 @@ namespace Modules\Shop\Repositories\Front;
 
 use Modules\Shop\Entities\Category;
 use Modules\Shop\Entities\Product;
+use Modules\Shop\Entities\Tag;
 use Modules\Shop\Repositories\Front\Interfaces\ProductRepositoryInterface;
 
 class ProductRepository implements ProductRepositoryInterface {
@@ -12,6 +13,7 @@ class ProductRepository implements ProductRepositoryInterface {
     {
         $perPage = $options['per_page'] ?? null;
         $categorySlug = $options['filter']['category'] ?? null;
+        $tagSlug = $options['filter']['tag'] ?? null;
 
         $products = Product::with(['categories', 'tags']);
 
@@ -24,6 +26,14 @@ class ProductRepository implements ProductRepositoryInterface {
 
             $products = $products->whereHas('categories', function ($query) use ($categoryIDs) {
                 $query->whereIn('shop_categories.id', $categoryIDs);
+            });
+        }
+
+        if ($tagSlug) {
+            $tag = Tag::where('slug', $tagSlug)->firstOrFail();
+
+            $products = $products->whereHas('tags', function ($query) use ($tag) {
+                $query->where('shop_tags.id', $tag->id);
             });
         }
 
