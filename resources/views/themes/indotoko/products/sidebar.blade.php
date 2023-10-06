@@ -20,12 +20,14 @@
             <h5>Price Range</h5>
         </div>
         <div class="widget-content shop-by-price">
-            <form method="GET" action="products.html">
+            <form method="GET" action="?">
                 <div class="price-filter">
                     <div class="price-filter-inner">
                         <div id="slider-range"></div>
                         <div class="price_slider_amount">
                             <div class="label-input d-lg-flex justify-content-between">
+                                <input type="hidden" id="min_price" value="{{ $filter['price']['min'] }}"/>
+                                <input type="hidden" id="max_price" value="{{ $filter['price']['max'] }}"/>
                                 <input type="text" id="amount" name="price" placeholder="Add Your Price" />
                                 <button type="submit" class="btn-first-sm">Filter</button>
                             </div>
