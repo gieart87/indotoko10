@@ -14,6 +14,8 @@ class ProductRepository implements ProductRepositoryInterface {
         $perPage = $options['per_page'] ?? null;
         $categorySlug = $options['filter']['category'] ?? null;
         $tagSlug = $options['filter']['tag'] ?? null;
+        $priceFilter = $options['filter']['price'] ?? null;
+        $sort = $options['sort'] ?? null;
 
         $products = Product::with(['categories', 'tags']);
 
@@ -35,6 +37,15 @@ class ProductRepository implements ProductRepositoryInterface {
             $products = $products->whereHas('tags', function ($query) use ($tag) {
                 $query->where('shop_tags.id', $tag->id);
             });
+        }
+
+        if ($priceFilter) {
+            $products = $products->where('price', '>=', $priceFilter['min'])
+                ->where('price', '<=', $priceFilter['max']);
+        }
+
+        if ($sort) {
+            $products = $products->orderBy($sort['sort'], $sort['order']);
         }
 
         if ($perPage) {
