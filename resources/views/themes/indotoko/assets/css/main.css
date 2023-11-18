@@ -15,6 +15,7 @@
 
 body {
   font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
 }
 
 a {
@@ -61,6 +62,16 @@ a:hover {
   color: #efecec;
 }
 
+.btn-add-cart {
+  border: 1px solid #B4D51E;
+  background-color: #B4D51E;
+  color: #FFF;
+}
+.btn-add-cart:hover {
+  background-color: #9ab812;
+  color: #efecec;
+}
+
 .input-group {
   width: 50%;
 }
@@ -96,6 +107,19 @@ a:hover {
   .header {
     margin-top: 120px;
   }
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #dfe2e1;
+  color: #dfe2e1;
+  margin: 1rem 0;
+  opacity: 1;
+}
+
+.my-6 {
+  margin-bottom: 1.5rem !important;
+  margin-top: 1.5rem !important;
 }
 
 .popular, .latest {
@@ -188,6 +212,70 @@ a:hover {
   .products .btn-cart i {
     font-size: 16px;
   }
+}
+
+#product-images .carousel-inner img {
+  width: 100%;
+  height: 100%;
+}
+
+#product-images .carousel-indicators {
+  position: static;
+  margin-top: 20px;
+}
+
+#product-images .carousel-indicators > li {
+  width: 100px;
+}
+
+#product-images .carousel-indicators li img {
+  display: block;
+  opacity: 0.5;
+}
+
+#product-images .carousel-indicators li.active img {
+  opacity: 1;
+}
+
+#product-images .carousel-indicators li:hover img {
+  opacity: 0.75;
+}
+
+.product-detail h1 {
+  font-weight: 600;
+  font-size: 2.1875rem;
+}
+.product-detail .rating a {
+  color: #9ab812;
+  font-size: 0.875em;
+}
+.product-detail .price {
+  font-size: 1.3125rem !important;
+}
+.product-detail .price .active-price {
+  font-weight: 700;
+}
+.product-detail .price .discount-percent {
+  font-size: 0.875rem !important;
+}
+.product-detail .product-share ul {
+  list-style: none;
+  padding: 0;
+}
+.product-detail .product-share ul li {
+  display: inline-block;
+  margin: 0 8px 0 0;
+  text-transform: capitalize;
+  font-size: 1.2rem;
+}
+.product-detail .product-share ul li a {
+  border: 1px solid #dfe2e1;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  line-height: 40px;
+  display: inline-block;
 }
 
 .breadcrumb-section {
