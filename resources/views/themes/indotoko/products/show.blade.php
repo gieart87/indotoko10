@@ -68,15 +68,21 @@
                     </div>
                     <hr class="my-6">
                     <div class="product-select mt-3 row justify-content-start g-2 align-items-center">
-                        <div class="col-md-2 col-2">
-                            <input type="number" name="qty" value="1" class="form-control" min="1" />
+                        @include ('themes.indotoko.shared.flash')
+                        {{ html()->form('post', route('carts.store'))->open() }}
+                        <input type="hidden" name="product_id" value="{{ $product->id }}"/>
+                        <div class="row">
+                            <div class="col-md-2 col-2">
+                                <input type="number" name="qty" value="1" class="form-control" min="1" />
+                            </div>
+                            <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
+                                <button type="submit" class="btn btn-add-cart"><i class="bx bx-cart-alt"></i> Add to cart</button>
+                            </div>
+                            <div class="col-md-4 col-4">
+                                <a class="btn btn-light" href="shop-wishlist.html" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="bx bx-heart"></i></a>
+                            </div>
                         </div>
-                        <div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
-                            <button type="button" class="btn btn-add-cart"><i class="bx bx-cart-alt"></i> Add to cart</button>
-                        </div>
-                        <div class="col-md-4 col-4">
-                            <a class="btn btn-light" href="shop-wishlist.html" data-bs-toggle="tooltip" data-bs-html="true" aria-label="Wishlist"><i class="bx bx-heart"></i></a>
-                        </div>
+                        {{ html()->form()->close() }}
                     </div>
                     <hr class="my-6">
                     <div class="product-info">
