@@ -22,6 +22,7 @@ class Cart extends Model
         'discount_amount',
         'tax_amount',
         'grand_total',
+        'total_weight',
     ];
     
     public function user()

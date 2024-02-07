@@ -23,6 +23,7 @@ Route::get('/tag/{tagSlug}', [ProductController::class, 'tag'])->name('products.
 Route::middleware(['auth'])->group(function() {
     Route::get('orders/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
     Route::post('orders/shipping-fee', [OrderController::class, 'shippingFee'])->name('orders.shipping_fee');
+    Route::post('orders/choose-package', [OrderController::class, 'choosePackage'])->name('orders.choose_package');
 
     Route::get('/carts', [CartController::class, 'index'])->name('carts.index');
     Route::get('/carts/{id}/remove', [CartController::class, 'destroy'])->name('carts.destroy');
