@@ -22,67 +22,70 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-7 col-md-6">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="mb-0"><i class='bx bx-map'></i> Delivery Address</h5>
-                            <a href="#" class="btn btn-outline-secondary btn-sm">Add a new address</a>
-                        </div>
-                        <div class="mt-3">
-                            <div class="row">
-                                @forelse ($addresses as $address)
-                                <div class="col-lg-6 col-12 mb-4">
-                                    <div class="card card-body p-6">
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input delivery-address" value="{{ $address->id }}" type="radio" name="address_id" id="homeRadio" {{ ($address->is_primary) ? 'checked' : '' }}>
-                                            <label class="form-check-label text-dark" for="homeRadio">{{ $address->label }}</label>
+                        <form method="POST" action="{{ route('orders.store') }}">
+                            @csrf
+                            <div class="d-flex justify-content-between">
+                                <h5 class="mb-0"><i class='bx bx-map'></i> Delivery Address</h5>
+                                <a href="#" class="btn btn-outline-secondary btn-sm">Add a new address</a>
+                            </div>
+                            <div class="mt-3">
+                                <div class="row">
+                                    @forelse ($addresses as $address)
+                                    <div class="col-lg-6 col-12 mb-4">
+                                        <div class="card card-body p-6">
+                                            <div class="form-check mb-4">
+                                                <input class="form-check-input delivery-address" value="{{ $address->id }}" type="radio" name="address_id" id="homeRadio" {{ ($address->is_primary) ? 'checked' : '' }}>
+                                                <label class="form-check-label text-dark" for="homeRadio">{{ $address->label }}</label>
+                                            </div>
+                                            <!-- address -->
+                                            <address>
+                                                <strong>{{ $address->first_name }} + {{ $address->last_name }}</strong>
+                                                <br>
+
+                                                {{ $address->address1 }}
+                                                <br>
+
+                                                {{ $address->address2 }}
+                                                <br>
+
+                                                <abbr title="Phone">P: {{ $address->phone }}</abbr>
+                                            </address>
+                                            @if ($address->is_primary)
+                                            <span class="text-danger">Default address</span>
+                                            @endif
                                         </div>
-                                        <!-- address -->
-                                        <address>
-                                            <strong>{{ $address->first_name }} + {{ $address->last_name }}</strong>
-                                            <br>
-
-                                            {{ $address->address1 }}
-                                            <br>
-
-                                            {{ $address->address2 }}
-                                            <br>
-
-                                            <abbr title="Phone">P: {{ $address->phone }}</abbr>
-                                        </address>
-                                        @if ($address->is_primary)
-                                        <span class="text-danger">Default address</span>
-                                        @endif
                                     </div>
+                                    @empty
+                                    <div class="col-12">
+                                        <p>No address found</p>
+                                    </div>
+                                    @endforelse
                                 </div>
-                                @empty
-                                <div class="col-12">
-                                    <p>No address found</p>
+                            </div>
+                            <h5 class="mb-0"><i class='bx bxs-truck'></i> Delivery Service</h5>
+                            <div class="mt-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input courier-code" type="radio" name="courier" id="inlineRadio1" value="jne">
+                                    <label class="form-check-label" for="inlineRadio1">JNE</label>
                                 </div>
-                                @endforelse
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input courier-code" type="radio" name="courier" id="inlineRadio2" value="pos">
+                                    <label class="form-check-label" for="inlineRadio2">POS</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input courier-code" type="radio" name="courier" id="inlineRadio2" value="tiki">
+                                    <label class="form-check-label" for="inlineRadio2">TIKI</label>
+                                </div>
                             </div>
-                        </div>
-                        <h5 class="mb-0"><i class='bx bxs-truck'></i> Delivery Service</h5>
-                        <div class="mt-3">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input courier-code" type="radio" name="courier_code" id="inlineRadio1" value="jne">
-                                <label class="form-check-label" for="inlineRadio1">JNE</label>
+                            <div class="mt-3">
+                                <p>Available services:</p>
+                                <ul class="list-group list-group-flush available-services" style="display: none;"></ul>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input courier-code" type="radio" name="courier_code" id="inlineRadio2" value="pos">
-                                <label class="form-check-label" for="inlineRadio2">POS</label>
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="{{ route('products.index') }}" class="btn btn-second">Back to Shopping Cart</a>
+                                <button type="submit" class="btn btn-first">Place Order</button>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input courier-code" type="radio" name="courier_code" id="inlineRadio2" value="tiki">
-                                <label class="form-check-label" for="inlineRadio2">TIKI</label>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <p>Available services:</p>
-                            <ul class="list-group list-group-flush available-services" style="display: none;"></ul>
-                        </div>
-                        <div class="d-flex justify-content-between mt-4">
-                            <a href="#!" class="btn btn-second">Back to Shopping Cart</a>
-                            <a href="#!" class="btn btn-first">Place Order</a>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-12 col-lg-5 col-md-6">
                         <div class="mb-5 card mt-6 shadow">

@@ -28,6 +28,7 @@ class Product extends Model
 		'excerpt',
 		'body',
 		'metas',
+        'weight',
     ];
 
     protected $table = 'shop_products';
