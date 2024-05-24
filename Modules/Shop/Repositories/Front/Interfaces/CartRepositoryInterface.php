@@ -13,4 +13,5 @@ interface CartRepositoryInterface
     public function addItem(Product $product, $qty): CartItem;
     public function removeItem($id): bool;
     public function updateQty($items = []): void;
+    public function clear(User $user): void;
 }
