@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 use Modules\Shop\Http\Controllers\CartController;
 use Modules\Shop\Http\Controllers\ProductController;
 use Modules\Shop\Http\Controllers\OrderController;
+use Modules\Shop\Http\Controllers\PaymentController;
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/category/{categorySlug}', [ProductController::class, 'category'])->name('products.category');
 Route::get('/tag/{tagSlug}', [ProductController::class, 'tag'])->name('products.tag');
+
+Route::post('/payments/midtrans', [PaymentController::class, 'midtrans'])->name('payments.midtrans');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('orders/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
