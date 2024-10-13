@@ -58,8 +58,8 @@
                             <table class="table card-table table-vcenter text-nowrap datatable">
                                 <thead>
                                     <tr>
+                                        <th>Name</th>
                                         <th>Slug</th>
-                                        <th>Nmae</th>
                                         <th></th>
                                     </tr>
                                 </thead>
